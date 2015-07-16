@@ -1,4 +1,4 @@
-PDFS=parallel.pdf
+PDFS=parallel.pdf parallel_Chris.pdf
 
 default: $(PDFS)
 

@@ -1,4 +1,4 @@
-%% LyX 2.1.1 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.1.3 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english]{beamer}
 \usepackage[T1]{fontenc}
@@ -50,7 +50,7 @@
 
 
 
-\title[Mesh Adaptivity and Fluidity]{Mesh Adaptivity and Fluidity}
+\title[Mesh Adaptivity and IC-Ferst]{Mesh Adaptivity and IC-Ferst}
 
 
 \author[James Percival]{James~Percival}
@@ -61,7 +61,7 @@ Department of Earth Science and Engineering\\
 Imperial College London}
 
 
-\date[Fluidity Training 2014]{Fluidity Training 2014}
+\date[Fluidity Training 2015]{IC-Ferst Training 2015}
 
 \makebeamertitle
 
@@ -145,7 +145,7 @@ called adaptive mesh refinement. Blocks are subdivided in areas of
 refinement. Good for computer memory access, less good for physics.
 
 
-\vspace{-2.65cm}\includegraphics[bb=0bp 0bp 1000bp 600bp,clip,scale=0.45]{MDP_00}
+\vspace{-2.65cm}\includegraphics[bb=0bp 0bp 1000bp 600bp,clip,scale=0.45]{/Users/origimbo/AMCG/myTalks/NormsOct2014/MDJ_00}
 
 \end{frame}
 
@@ -157,7 +157,7 @@ called adaptive mesh refinement. Blocks are subdivided in areas of
 refinement. Good for computer memory access, less good for physics.
 
 
-\vspace{-2.65cm}\includegraphics[bb=0bp 0bp 1000bp 600bp,clip,scale=0.45]{MDP_01}
+\vspace{-2.65cm}\includegraphics[bb=0bp 0bp 1000bp 600bp,clip,scale=0.45]{/Users/origimbo/AMCG/myTalks/NormsOct2014/MDJ_01}
 
 \end{frame}
 
@@ -169,7 +169,7 @@ called adaptive mesh refinement. Blocks are subdivided in areas of
 refinement. Good for computer memory access, less good for physics.
 
 
-\vspace{-2.65cm}\includegraphics[bb=0bp 0bp 1000bp 600bp,clip,scale=0.45]{MDP_02}
+\vspace{-2.65cm}\includegraphics[bb=0bp 0bp 1000bp 600bp,clip,scale=0.45]{/Users/origimbo/AMCG/myTalks/NormsOct2014/MDJ_03}
 
 \end{frame}
 
@@ -181,7 +181,7 @@ called adaptive mesh refinement. Blocks are subdivided in areas of
 refinement. Good for computer memory access, less good for physics.
 
 
-\vspace{-2.65cm}\includegraphics[bb=0bp 0bp 1000bp 600bp,clip,scale=0.45]{MDP_03}
+\vspace{-2.65cm}\includegraphics[bb=0bp 0bp 1000bp 600bp,clip,scale=0.45]{/Users/origimbo/AMCG/myTalks/NormsOct2014/MDJ_03}
 
 \end{frame}
 
@@ -193,7 +193,7 @@ called adaptive mesh refinement. Blocks are subdivided in areas of
 refinement. Good for computer memory access, less good for physics.
 
 
-\vspace{-2.65cm}\includegraphics[bb=0bp 0bp 1000bp 600bp,clip,scale=0.45]{MDP_04}
+\vspace{-2.65cm}\includegraphics[bb=0bp 0bp 1000bp 600bp,clip,scale=0.45]{/Users/origimbo/AMCG/myTalks/NormsOct2014/MDJ_04}
 
 \end{frame}
 
@@ -222,7 +222,7 @@ refinement. Good for computer memory access, less good for physics.
 \item Analagous to AMR.
 \item Decreases error estimates, increases complexity (refinement)
 \item Increases error estimates, decreases complexity (coarsening)
-\item Implemented in Fluidity.
+\item Implemented in IC-Ferst.
 \end{itemize}
 \end{frame}
 
@@ -243,7 +243,7 @@ refinement. Good for computer memory access, less good for physics.
 \begin{itemize}
 \item Adapt by repositioning nodes so that elements are ``better'' shape
 \item Decreases error, maintains complexity.
-\item Implemented in Fluidity.
+\item Implemented in IC-Ferst.
 \end{itemize}
 \end{frame}
 
@@ -267,32 +267,32 @@ parts of mesh
 \item Decreases error estimates, increases complexity (refinement)
 \item Increases error estimates, decreases complexity (coarsening)
 \item Complex coupling with $h$ adaptivity.
-\item Not currently implemented in Fluidity
+\item Not currently implemented in IC-Ferst
 \end{itemize}
 \end{frame}
 
 
 
 \subsection{Solution error and mesh resolution in FEM}
-\begin{frame}{Revision of Céa's lemma}
+\begin{frame}{Céa's lemma}
 
 
-Céa's lemma provides inequality.
+Céa's lemma provides a bound on the error of an FE solution to certain
+sets of equations.
 \[
 \mbox{error}:=\left\Vert \psi-\psi^{\delta}\right\Vert \leq\frac{\alpha C}{c}\sup_{\Omega_{i}}h_{i}\sup_{x\in\Omega}\left|\frac{\partial^{2}\psi}{\partial x^{2}}\right|
 \]
-Used this to show convergence as $h\rightarrow$0. But also a connection
-to adaptive meshing. Go element by element
+Can use this to show method converges as $h\rightarrow$0. But also
+a connection to adaptive meshing. Go element by element
 \[
 \left\Vert \psi-\psi^{\delta}\right\Vert \leq\frac{\alpha}{c}\sum_{i}h_{i}^{2}\sup_{x\in\Omega_{i}}\left|\frac{\partial^{2}\psi}{\partial x^{2}}\right|.
 \]
 
 
 
-One definition of ``good'' mesh will minimise this representation
-\emph{error estimate}. When $\left|\frac{\partial^{2}\psi}{\partial x^{2}}\right|$
-is \emph{small}, element size $h_{i}$ can be \emph{large}, and
-vice versa.
+One definition of ``good'' mesh will minimise this bound or \emph{error estimate}.
+When $\left|\frac{\partial^{2}\psi}{\partial x^{2}}\right|$ is \emph{small},
+element size $h_{i}$ can be \emph{large}, and vice versa.
 
 \end{frame}
 
@@ -330,8 +330,8 @@ etc.
 \begin{block}{Solution:}
 
 
-We have an existing value of FE solution, $\psi^{\delta}$, Esimate
-derivatives from that. 
+We have an existing value of numerical solution, $\psi^{\delta}$,
+Esimate derivatives from that. 
 \end{block}
 
 In 2D/3D $\frac{\partial^{2}\psi}{\partial x^{2}}$ gets replaced
@@ -369,7 +369,7 @@ factor which also nondimensionalizes the problem.
 The $\epsilon$ has the same physical units as the field, $\psi$,
 so can sensibly be specified in either:
 \begin{enumerate}
-\item absolute units (eg. 1 m/s for a velocity field) or,
+\item absolute units (eg. $1\times10^{-5}$ m/s for a velocity field) or,
 \item relative units (eg. 5\% of the local value of $\psi^{\delta}$).
 \end{enumerate}
 
@@ -395,7 +395,7 @@ choice.
 
 \begin{itemize}
 \item Mathematics has been given for a single variable, but in practice
-CFD involves multiple prognostic variables.
+may involves multiple prognostic variables.
 \item Extension trivial, but each field requires own \emph{interpolation error bound}.
 \item Haven't discussed the choice function in $\mathcal{M}$.
 \item Implementation in parallel introduces additional complications
@@ -415,7 +415,7 @@ through additional constraints.
 
 
 Usually desriable to have some additional constraints on the target
-lengths in the mesh error metric tensor. Fluidity accepts 2 inputs,
+lengths in the mesh error metric tensor. IC-Ferst accepts 2 inputs,
 giving the equation of bounding ellipses/ellipsoids on the edge lengths
 in symmetric positive definite tensorial form:
 \begin{columns}[c]
@@ -523,10 +523,6 @@ And attempt to set
 \item Avoids issues with dissipation \& balance linked to frequent mesh
 adaptation.
 \item Fairly robust to choice of advection scheme, so long as it's stable
-
-\begin{itemize}
-\item (see next set of talks)
-\end{itemize}
 \item May increase problem sizes (larger areas with high resolution)
 \item May misbehave if the physics of the system bifurcates.
 \end{itemize}
@@ -557,14 +553,14 @@ A typical choice would be
 \underline{\Gamma}=\left(\begin{array}{cc}
 1.5 & 0\\
 0 & 1.5
-\end{array}\right)\mbox{ or, to same result}\left(\begin{array}{cc}
+\end{array}\right)\mbox{ or, to same effect}\left(\begin{array}{cc}
 1/1.5 & 0\\
 0 & 1/1.5
 \end{array}\right)
 \]
 
 \begin{itemize}
-\item The default gradation is good unless there's a special reason to have
+\item The default gradation is fine unless there's a special reason to have
 a very smooth variation.
 \item Anisotropic gradation is more suited to anistropic problems (fronts/filaments/high
 aspect ratios)
@@ -658,14 +654,42 @@ is more complicated, but can be dealt with by supermeshing.
 \end{itemize}
 \end{frame}
 
+\begin{frame}{``Grandy'' interpolation}
+
+
+Galerkin projection can be modified to be bounded by averaging data
+only constant functions on the elements, projecting in that space,
+then performing a final projection to the normal shape functions
+
+
+\[
+\tilde{\psi}^{\mbox{old}}\left(\bm{p}\right)\int_{\Omega^{(i)}}dV=\begin{cases}
+\int_{\Omega^{(i)}}\psi^{\mbox{old}}dV & \bm{p}\in\Omega^{(i)}\\
+0 & \mbox{otherwise.}
+\end{cases},\qquad
+\]
+\[
+\tilde{\psi}_{i}^{\mbox{new}}\int_{\Omega_{(i)}^{\mbox{new}}}dV=\int_{\Omega_{(i)}^{\mbox{new}}}\tilde{\psi}^{\mbox{old}}dV.
+\]
+\[
+\sum_{j}\int_{\Omega}N_{i}^{\mbox{new}}N_{j}^{\mbox{new}}\psi_{j}^{\mbox{new}}dV=\sum_{k}\int_{\Omega}N_{i}^{\mbox{new}}\tilde{\psi}_{k}^{\mbox{old}}dV.
+\]
+
+\begin{itemize}
+\item Slower than consistent interpolation
+\item Is conservative.
+\item Is only bounded for discontinuous elements.
+\item Doesn't preserve data under identity mesh transformation.
+\item Very dissipative.
+\end{itemize}
+\end{frame}
+
 \begin{frame}{References}
-
-
 
 
 \beamertemplatebookbibitems
 \begin{thebibliography}{References}
-\bibitem{key-2}Fluidity Manual\newblock AMCG\newblock 2014\beamertemplatearticlebibitems
+\bibitem{key-2}Fluidity Manual\newblock AMCG\newblock 2015\beamertemplatearticlebibitems
 
 \bibitem{key-1}C. C. Pain, A. P. Umpleby, et al. Tetrahedral mesh
 optimisation and adaptivity for steady-state and transient finite

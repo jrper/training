@@ -136,12 +136,12 @@ In principle, this file can be redistributed and/or modified under the terms
 \end_layout
 
 \begin_layout Title
-Mesh Adaptivity and Fluidity
+Mesh Adaptivity and IC-Ferst
 \begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
-Mesh Adaptivity and Fluidity
+Mesh Adaptivity and IC-Ferst
 \begin_inset Note Note
 status open
 
@@ -260,7 +260,7 @@ optional, but mostly needed
 \end_layout
 
 \begin_layout Date
-Fluidity Training 2014
+IC-Ferst Training 2015
 \begin_inset Note Note
 status collapsed
 
@@ -281,7 +281,7 @@ Not really informative to the audience, more for people (including yourself)
 status open
 
 \begin_layout Plain Layout
-Fluidity Training 2014
+Fluidity Training 2015
 \begin_inset Note Note
 status collapsed
 
@@ -691,7 +691,7 @@ vspace{-2.65cm}
 
 
 \begin_inset Graphics
-	filename MDP_00.png
+	filename /Users/origimbo/AMCG/myTalks/NormsOct2014/MDJ_00.png
 	scale 45
 	BoundingBox 0bp 0bp 1000bp 600bp
 	clip
@@ -742,7 +742,7 @@ vspace{-2.65cm}
 
 
 \begin_inset Graphics
-	filename MDP_01.png
+	filename /Users/origimbo/AMCG/myTalks/NormsOct2014/MDJ_01.png
 	scale 45
 	BoundingBox 0bp 0bp 1000bp 600bp
 	clip
@@ -793,7 +793,7 @@ vspace{-2.65cm}
 
 
 \begin_inset Graphics
-	filename MDP_02.png
+	filename /Users/origimbo/AMCG/myTalks/NormsOct2014/MDJ_03.png
 	scale 45
 	BoundingBox 0bp 0bp 1000bp 600bp
 	clip
@@ -844,7 +844,7 @@ vspace{-2.65cm}
 
 
 \begin_inset Graphics
-	filename MDP_03.png
+	filename /Users/origimbo/AMCG/myTalks/NormsOct2014/MDJ_03.png
 	scale 45
 	BoundingBox 0bp 0bp 1000bp 600bp
 	clip
@@ -895,7 +895,7 @@ vspace{-2.65cm}
 
 
 \begin_inset Graphics
-	filename MDP_04.png
+	filename /Users/origimbo/AMCG/myTalks/NormsOct2014/MDJ_04.png
 	scale 45
 	BoundingBox 0bp 0bp 1000bp 600bp
 	clip
@@ -1108,7 +1108,7 @@ Increases error estimates, decreases complexity (coarsening)
 \end_layout
 
 \begin_layout Itemize
-Implemented in Fluidity.
+Implemented in IC-Ferst.
 \end_layout
 
 \end_deeper
@@ -1302,7 +1302,7 @@ Decreases error, maintains complexity.
 \end_layout
 
 \begin_layout Itemize
-Implemented in Fluidity.
+Implemented in IC-Ferst.
 \end_layout
 
 \end_deeper
@@ -1501,7 +1501,7 @@ Complex coupling with
 \end_layout
 
 \begin_layout Itemize
-Not currently implemented in Fluidity
+Not currently implemented in IC-Ferst
 \end_layout
 
 \end_deeper
@@ -1518,7 +1518,7 @@ Solution error and mesh resolution in FEM
 status open
 
 \begin_layout Plain Layout
-Revision of Céa's lemma
+Céa's lemma
 \end_layout
 
 \end_inset
@@ -1528,7 +1528,8 @@ Revision of Céa's lemma
 
 \begin_deeper
 \begin_layout Standard
-Céa's lemma provides inequality.
+Céa's lemma provides a bound on the error of an FE solution to certain sets
+ of equations.
 \begin_inset Formula 
 \[
 \mbox{error}:=\left\Vert \psi-\psi^{\delta}\right\Vert \leq\frac{\alpha C}{c}\sup_{\Omega_{i}}h_{i}\sup_{x\in\Omega}\left|\frac{\partial^{2}\psi}{\partial x^{2}}\right|
@@ -1536,7 +1537,7 @@ Céa's lemma provides inequality.
 
 \end_inset
 
-Used this to show convergence as 
+Can use this to show method converges as 
 \begin_inset Formula $h\rightarrow$
 \end_inset
 
@@ -1562,7 +1563,7 @@ good
 \begin_inset Quotes erd
 \end_inset
 
- mesh will minimise this representation 
+ mesh will minimise this bound or 
 \begin_inset ERT
 status open
 
@@ -1741,7 +1742,7 @@ Solution:
 \end_layout
 
 \begin_layout Block
-We have an existing value of FE solution, 
+We have an existing value of numerical solution, 
 \begin_inset Formula $\psi^{\delta}$
 \end_inset
 
@@ -1869,7 +1870,11 @@ The
 
 \begin_layout Enumerate
 absolute units (eg.
- 1 m/s for a velocity field) or,
+ 
+\begin_inset Formula $1\times10^{-5}$
+\end_inset
+
+ m/s for a velocity field) or,
 \end_layout
 
 \begin_layout Enumerate
@@ -1947,7 +1952,7 @@ Points to remember
 
 \begin_deeper
 \begin_layout Itemize
-Mathematics has been given for a single variable, but in practice CFD involves
+Mathematics has been given for a single variable, but in practice may involves
  multiple prognostic variables.
 \end_layout
 
@@ -2019,7 +2024,7 @@ Metric Tensor Bounds
 \begin_layout Standard
 Usually desriable to have some additional constraints on the target lengths
  in the mesh error metric tensor.
- Fluidity accepts 2 inputs, giving the equation of bounding ellipses/ellipsoids
+ IC-Ferst accepts 2 inputs, giving the equation of bounding ellipses/ellipsoids
  on the edge lengths in symmetric positive definite tensorial form:
 \end_layout
 
@@ -2279,12 +2284,6 @@ Avoids issues with dissipation & balance linked to frequent mesh adaptation.
 Fairly robust to choice of advection scheme, so long as it's stable
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-(see next set of talks)
-\end_layout
-
-\end_deeper
 \begin_layout Itemize
 May increase problem sizes (larger areas with high resolution)
 \end_layout
@@ -2376,7 +2375,7 @@ A typical choice would be
 \underline{\Gamma}=\left(\begin{array}{cc}
 1.5 & 0\\
 0 & 1.5
-\end{array}\right)\mbox{ or, to same result}\left(\begin{array}{cc}
+\end{array}\right)\mbox{ or, to same effect}\left(\begin{array}{cc}
 1/1.5 & 0\\
 0 & 1/1.5
 \end{array}\right)
@@ -2388,7 +2387,7 @@ A typical choice would be
 \end_layout
 
 \begin_layout Itemize
-The default gradation is good unless there's a special reason to have a
+The default gradation is fine unless there's a special reason to have a
  very smooth variation.
 \end_layout
 
@@ -2661,10 +2660,6 @@ For a new problem, usually best to do fixed resolution runs first.
 \end_layout
 
 \begin_layout Frame
-\begin_inset Note Note
-status open
-
-\begin_layout Frame
 \begin_inset Argument 4
 status open
 
@@ -2685,13 +2680,13 @@ Grandy
 \end_layout
 
 \begin_deeper
-\begin_layout Plain Layout
+\begin_layout Standard
 Galerkin projection can be modified to be bounded by averaging data only
  constant functions on the elements, projecting in that space, then performing
  a final projection to the normal shape functions
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 \begin_inset Formula 
 \[
 \tilde{\psi}^{\mbox{old}}\left(\bm{p}\right)\int_{\Omega^{(i)}}dV=\begin{cases}
@@ -2743,11 +2738,6 @@ Very dissipative.
 
 \end_deeper
 \begin_layout Separator
-
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
@@ -2844,7 +2834,7 @@ newblock
 
 \end_inset
 
- 2014
+ 2015
 \begin_inset Note Note
 status open
 
